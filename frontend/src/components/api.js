@@ -62,14 +62,11 @@ export const api = {
   async getMonthlyAttendanceStats(employeeId, month = null, year = null) {
     let url = `${API_URL}/api/attendance/monthly-stats/${employeeId}`;
     const params = new URLSearchParams();
-
     if (month !== null) params.append("month", month);
     if (year !== null) params.append("year", year);
-
     if (params.toString()) {
       url += `?${params.toString()}`;
     }
-
     const response = await fetch(url);
     if (!response.ok) {
       const error = await response.json();
