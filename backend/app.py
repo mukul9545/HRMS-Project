@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-DATABASE_NAME = "hrms_db"
+DATABASE_NAME = os.getenv("DATABASE_NAME", "hrms_db")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
 try:
     client = AsyncIOMotorClient(MONGODB_URL)
@@ -73,7 +74,11 @@ app = FastAPI(title="HRMS API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        FRONTEND_URL.rstrip("/"),
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
