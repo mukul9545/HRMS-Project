@@ -1,1 +1,17 @@
+# Security
 .env
+.env.local
+
+# Dependencies
+node_modules/
+backend/venv/
+backend/.venv/
+
+# Build outputs
+dist/
+frontend/dist/
+backend/__pycache__/
+
+# IDE & OS
+.vscode/
+.DS_Store
