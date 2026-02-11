@@ -75,7 +75,7 @@ app = FastAPI(title="HRMS API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://hrms-project-1-0sdh.onrender.com/",
+        "https://hrms-project-1-0sdh.onrender.com",
         FRONTEND_URL.rstrip("/"),
     ],
     allow_credentials=True,
@@ -333,4 +333,5 @@ async def health():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
